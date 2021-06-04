@@ -14,7 +14,8 @@ class PhotoValidator {
         List<String> validationResult = new ArrayList<>(validateImage(dto.getPhoto()));
         titleValidation.ifPresent(validationResult::add);
         if (validationResult.isEmpty()) {
-            return new ValidationResult(true, List.of());
+            validationResult.add("Successfully added a photo");
+            return new ValidationResult(true, validationResult);
         } else {
             return new ValidationResult(false, validationResult);
         }
@@ -22,7 +23,7 @@ class PhotoValidator {
 
     private List<String> validateImage(MultipartFile image) {
         LinkedList<String> result = new LinkedList<>();
-        if (image == null) {
+        if (image.isEmpty()) {
             result.add("Image mustn't be empty");
         } else if (!image.getContentType().contains("image")) {
             result.add("Type of file have to be image");

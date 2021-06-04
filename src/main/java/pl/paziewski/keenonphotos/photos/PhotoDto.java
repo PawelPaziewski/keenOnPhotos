@@ -1,12 +1,11 @@
 package pl.paziewski.keenonphotos.photos;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
-@Getter(AccessLevel.PACKAGE)
-@Setter(AccessLevel.PACKAGE)
+@Getter
+@Setter
 class PhotoDto {
     private String title;
     private String description;
