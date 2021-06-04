@@ -24,7 +24,7 @@ class RegistrationValidator {
     private List<String> validateMail(RegisterDto dto) {
         List<String> errors = new LinkedList<>();
         if (!dto.getMail().matches("^(.+)@(.+)$")) {
-            errors.add("Email should have email structure");
+            errors.add("Email should match email structure");
         }
         return errors;
     }

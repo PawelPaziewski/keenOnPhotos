@@ -8,6 +8,9 @@
 </head>
 <body>
 <div class="container p-4">
+    <div class="alert alert-danger" role="alert" th:if="${!(errors == null) and !errors.isEmpty()}">
+        <li th:each="error: ${errors}" th:text="${error}"></li>
+    </div>
     <div th:if="${param.error}" class="alert alert-danger" role="alert">
         Niepoprawna nazwa użytkownika lub hasło
     </div>

@@ -25,6 +25,7 @@ class RegisterController {
             return "login";
         } else {
             model.addAttribute("dto", dto);
+            model.addAttribute("errors", validationResult.getMessages());
             return "register";
         }
     }
