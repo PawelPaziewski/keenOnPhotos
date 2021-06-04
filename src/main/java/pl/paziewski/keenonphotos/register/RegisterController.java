@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.paziewski.keenonphotos.ValidationResult;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @AllArgsConstructor
 @Controller
@@ -20,14 +20,15 @@ class RegisterController {
     }
 
     @PostMapping("/register")
-    String registerPost(RegisterDto dto, Model model) {
-        ValidationResult validationResult = facade.addUser(dto);
-        if (validationResult.isValid()) {
-            return "login";
+    String registerPost(RegisterDto dto, Model model, RedirectAttributes attributes) {
+        ValidationResult result = facade.addUser(dto);
+        if (result.isValid()) {
+            attributes.addFlashAttribute("infos", result.getMessages());
+            return "redirect:/login";
         } else {
             model.addAttribute("dto", dto);
-            model.addAttribute("errors", validationResult.getMessages());
-            return "register";
+            attributes.addFlashAttribute("errors", result.getMessages());
+            return "redirect:/register";
         }
     }
 }
