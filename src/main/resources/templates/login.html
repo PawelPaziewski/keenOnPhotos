@@ -8,6 +8,9 @@
 </head>
 <body>
 <div class="container p-4">
+  <!--messages-->
+  <div th:replace="fragments::messages"></div>
+
   <div th:if="${param.error}" class="alert alert-danger" role="alert">
     Invalid username or password
   </div>
