@@ -24,6 +24,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/home").permitAll()
+                .antMatchers("/register").permitAll()
                 .anyRequest().authenticated();
         http.logout()
                 .logoutSuccessUrl("/home");
