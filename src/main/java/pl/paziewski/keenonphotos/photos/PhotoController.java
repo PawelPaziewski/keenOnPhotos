@@ -1,6 +1,7 @@
 package pl.paziewski.keenonphotos.photos;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import pl.paziewski.keenonphotos.ValidationResult;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -38,5 +40,14 @@ class PhotoController {
             attributes.addFlashAttribute("errors", result.getMessages());
             return "redirect:/addphoto";
         }
+    }
+
+    @GetMapping("/latestphotos")
+    String latest(Model model,
+                  @RequestParam("page") Optional<Integer> page) {
+        int currentPage = page.orElse(0);
+        Page<LatestPhotoDto> photos = facade.getLatestPhotos(currentPage);
+        model.addAttribute("page", photos);
+        return "latest_photos";
     }
 }

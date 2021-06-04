@@ -1,6 +1,7 @@
 package pl.paziewski.keenonphotos.photos;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.bson.types.ObjectId;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Setter(AccessLevel.PRIVATE)
 @Document(collection = "photos")
+@Getter(AccessLevel.PACKAGE)
 class Photo {
 
     @Id
