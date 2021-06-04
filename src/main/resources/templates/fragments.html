@@ -8,13 +8,28 @@
     <title>Title</title>
 </head>
 <body>
-<div class="container" th:fragment="messages">
+<div th:fragment="messages">
     <div class="alert alert-danger" role="alert" th:if="${!(errors == null) and !errors.isEmpty()}">
         <li th:each="error: ${errors}" th:text="${error}"></li>
     </div>
     <div class="alert alert-success" role="alert" th:if="${!(infos == null) and !infos.isEmpty()}">
         <li th:each="info: ${infos}" th:text="${info}"></li>
     </div>
+</div>
+<div th:fragment="pagination">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:hidden="${page.number<1}">
+                <a class="page-link" th:href="@{/latestphotos(page=${page.number-1})}"
+                   tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" th:text="${page.number+1}"></a></li>
+            <li class="page-item" th:hidden="${page.number >= page.totalPages}">
+                <a class="page-link"
+                   th:href="@{/latestphotos(page=${page.number+1})}">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 </body>
 </html>
