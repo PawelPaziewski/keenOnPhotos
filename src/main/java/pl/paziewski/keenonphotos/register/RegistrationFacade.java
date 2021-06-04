@@ -1,6 +1,7 @@
 package pl.paziewski.keenonphotos.register;
 
 import lombok.AllArgsConstructor;
+import pl.paziewski.keenonphotos.ValidationResult;
 import pl.paziewski.keenonphotos.security.User;
 import pl.paziewski.keenonphotos.security.UserRepository;
 
