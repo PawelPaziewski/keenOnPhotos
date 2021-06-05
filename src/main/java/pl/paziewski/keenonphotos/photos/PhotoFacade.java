@@ -15,7 +15,7 @@ class PhotoFacade {
     private final PhotoRepository repository;
     private final PhotoHelper helper;
 
-    ValidationResult addPhoto(PhotoDto dto) throws IOException {
+    ValidationResult addPhoto(UploadPhotoDto dto) throws IOException {
         ValidationResult result = validator.validatePhoto(dto);
         if (result.isValid()) {
             Photo photo = helper.mapToPhoto(dto);

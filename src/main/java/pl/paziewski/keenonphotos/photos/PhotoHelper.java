@@ -14,7 +14,7 @@ class PhotoHelper {
 
     private static final int TARGET_SIZE = 1920;
 
-    Photo mapToPhoto(PhotoDto dto) throws IOException {
+    Photo mapToPhoto(UploadPhotoDto dto) throws IOException {
         return new Photo(
                 dto.getTitle(),
                 dto.getOwnerUsername(),

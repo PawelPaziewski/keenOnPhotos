@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
-class PhotoDto {
+class UploadPhotoDto {
     private String title;
     private String description;
     private String cameraParameters;

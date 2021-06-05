@@ -24,13 +24,13 @@ class PhotoController {
 
     @GetMapping("/addphoto")
     String addPhoto(Model model) throws IOException {
-        model.addAttribute(new PhotoDto());
+        model.addAttribute(new UploadPhotoDto());
         return "add_photo";
     }
 
 
     @PostMapping("/upload")
-    String upload(Principal principal, @RequestParam("file") MultipartFile file, PhotoDto dto, RedirectAttributes attributes) throws IOException {
+    String upload(Principal principal, @RequestParam("file") MultipartFile file, UploadPhotoDto dto, RedirectAttributes attributes) throws IOException {
         dto.setPhoto(file);
         dto.setOwnerUsername(principal.getName());
         ValidationResult result = facade.addPhoto(dto);
