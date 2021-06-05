@@ -12,7 +12,7 @@
     <div th:replace="fragments::messages"></div>
 
     <div class="card m-4" style="width: 20rem; display: inline-block" th:each="lat: ${page.content}">
-        <a class="page-link" th:href="@{details/{id}(id = ${lat.title})}">
+        <a class="page-link" th:href="@{details/{id}(id = ${lat.id})}">
             <img class="card-img-top" src="..." th:src="${lat.image}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title" th:text="${lat.title}"></h5>
