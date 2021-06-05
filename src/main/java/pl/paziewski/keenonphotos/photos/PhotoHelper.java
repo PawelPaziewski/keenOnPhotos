@@ -14,7 +14,7 @@ class PhotoHelper {
 
     private static final int TARGET_SIZE = 1920;
 
-    Photo mapToPhoto(PhotoDto dto) throws IOException {
+    Photo mapToPhoto(UploadPhotoDto dto) throws IOException {
         return new Photo(
                 dto.getTitle(),
                 dto.getOwnerUsername(),
@@ -36,10 +36,14 @@ class PhotoHelper {
 
     static LatestPhotoDto convertToLatestPhotoDto(Photo photo) {
         return new LatestPhotoDto(
+                photo.get_id(),
                 "data:image/png;base64," + Base64.getMimeEncoder().encodeToString(photo.getPhoto()),
                 photo.getUploaded().toString("dd-MM-yyyy hh:mm:ss"),
                 photo.getTitle(),
-                photo.getDescription()
+                photo.getDescription(),
+                photo.getOwnerUsername(),
+                photo.getCameraParameters(),
+                photo.getLocation()
         );
     }
 }

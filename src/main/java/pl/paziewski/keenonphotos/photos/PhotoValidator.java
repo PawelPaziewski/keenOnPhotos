@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 class PhotoValidator {
-    ValidationResult validatePhoto(PhotoDto dto) {
+    ValidationResult validatePhoto(UploadPhotoDto dto) {
         Optional<String> titleValidation = validateTitle(dto);
         List<String> validationResult = new ArrayList<>(validateImage(dto.getPhoto()));
         titleValidation.ifPresent(validationResult::add);
@@ -31,7 +31,7 @@ class PhotoValidator {
         return result;
     }
 
-    private Optional<String> validateTitle(PhotoDto dto) {
+    private Optional<String> validateTitle(UploadPhotoDto dto) {
         if (dto.getTitle() == null || dto.getTitle().isEmpty()) {
             return Optional.of("Title mustn't be empty");
         }
