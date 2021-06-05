@@ -34,8 +34,8 @@ class PhotoHelper {
         return byteArrayOutputStream.toByteArray();
     }
 
-    static LatestPhotoDto convertToLatestPhotoDto(Photo photo) {
-        return new LatestPhotoDto(
+    static PhotoDto convertToLatestPhotoDto(Photo photo) {
+        return new PhotoDto(
                 photo.get_id(),
                 "data:image/png;base64," + Base64.getMimeEncoder().encodeToString(photo.getPhoto()),
                 photo.getUploaded().toString("dd-MM-yyyy hh:mm:ss"),

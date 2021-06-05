@@ -48,14 +48,14 @@ class PhotoController {
     String latest(Model model,
                   @RequestParam("page") Optional<Integer> page) {
         int currentPage = page.orElse(0);
-        Page<LatestPhotoDto> photos = facade.getLatestPhotos(currentPage);
+        Page<PhotoDto> photos = facade.getLatestPhotos(currentPage);
         model.addAttribute("page", photos);
         return "latest_photos";
     }
 
     @GetMapping("/details/{id}")
     String details(@PathVariable ObjectId id, Model model) {
-        Optional<LatestPhotoDto> photo = facade.getPhoto(id);
+        Optional<PhotoDto> photo = facade.getPhoto(id);
         return photo.map(p -> {
             model.addAttribute("photo", p);
             return "details";

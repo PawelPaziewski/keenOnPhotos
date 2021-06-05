@@ -26,18 +26,18 @@ class PhotoFacade {
         return result;
     }
 
-    public Page<LatestPhotoDto> getLatestPhotos(int pageNumber) {
+    public Page<PhotoDto> getLatestPhotos(int pageNumber) {
         Sort sort = Sort.by(Sort.Direction.DESC, "uploaded");
         Pageable paging = PageRequest.of(pageNumber, 3, sort);
         Page<Photo> page = repository.findAll(paging);
-        List<LatestPhotoDto> converted = page.getContent()
+        List<PhotoDto> converted = page.getContent()
                 .stream()
                 .map(PhotoHelper::convertToLatestPhotoDto)
                 .collect(Collectors.toList());
         return new PageImpl<>(converted, paging, page.getTotalElements());
     }
 
-    Optional<LatestPhotoDto> getPhoto(ObjectId id) {
+    Optional<PhotoDto> getPhoto(ObjectId id) {
         return repository.findById(id)
                 .map(PhotoHelper::convertToLatestPhotoDto);
     }

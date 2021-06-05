@@ -6,7 +6,7 @@ import org.bson.types.ObjectId;
 
 @Getter
 @AllArgsConstructor
-class LatestPhotoDto {
+class PhotoDto {
     ObjectId id;
     String image;
     String uploaded;
