@@ -25,7 +25,7 @@ class PhotoController {
 
     @GetMapping("/addphoto")
     String addPhoto(Model model) throws IOException {
-        model.addAttribute(new UploadPhotoDto());
+        model.addAttribute("photoDto", new UploadPhotoDto());
         return "add_photo";
     }
 
