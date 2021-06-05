@@ -38,7 +38,7 @@ class PhotoHelper {
         return new LatestPhotoDto(
                 photo.get_id(),
                 "data:image/png;base64," + Base64.getMimeEncoder().encodeToString(photo.getPhoto()),
-                photo.getUploaded().toString(),
+                photo.getUploaded().toString("dd-MM-yyyy hh:mm:ss"),
                 photo.getTitle(),
                 photo.getDescription(),
                 photo.getOwnerUsername(),
