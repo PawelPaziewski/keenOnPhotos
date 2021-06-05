@@ -19,12 +19,12 @@
 <div th:fragment="pagination">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-            <li class="page-item" th:hidden="${page.number<1}">
+            <li class="page-item" th:hidden="${!page.hasPrevious()}">
                 <a class="page-link" th:href="@{/latestphotos(page=${page.number-1})}"
                    tabindex="-1">Previous</a>
             </li>
             <li class="page-item"><a class="page-link" th:text="${page.number+1}"></a></li>
-            <li class="page-item" th:hidden="${page.number >= page.totalPages}">
+            <li class="page-item" th:hidden="${!page.hasNext()}">
                 <a class="page-link"
                    th:href="@{/latestphotos(page=${page.number+1})}">Next</a>
             </li>
