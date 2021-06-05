@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.paziewski.keenonphotos.ValidationResult;
 
+import java.security.Principal;
+import java.util.List;
+
 @AllArgsConstructor
 @Controller
 class RegisterController {
@@ -15,9 +18,14 @@ class RegisterController {
     private final RegistrationFacade facade;
 
     @GetMapping("/register")
-    String registerGet(Model model) {
-        model.addAttribute("dto", new RegisterDto());
-        return "register";
+    String registerGet(Model model, Principal principal, RedirectAttributes attributes) {
+        if (principal != null) {
+            attributes.addFlashAttribute("errors", List.of("You are logged in. To register You have to logout first."));
+            return "redirect:/home";
+        } else {
+            model.addAttribute("dto", new RegisterDto());
+            return "register";
+        }
     }
 
     @PostMapping("/register")
