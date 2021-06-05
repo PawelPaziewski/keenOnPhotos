@@ -1,11 +1,13 @@
 package pl.paziewski.keenonphotos.photos;
 
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.domain.*;
 import pl.paziewski.keenonphotos.ValidationResult;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -33,5 +35,10 @@ class PhotoFacade {
                 .map(PhotoHelper::convertToLatestPhotoDto)
                 .collect(Collectors.toList());
         return new PageImpl<>(converted, paging, page.getTotalElements());
+    }
+
+    Optional<LatestPhotoDto> getPhoto(ObjectId id) {
+        return repository.findById(id)
+                .map(PhotoHelper::convertToLatestPhotoDto);
     }
 }

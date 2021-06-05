@@ -12,4 +12,7 @@ class LatestPhotoDto {
     String uploaded;
     String title;
     String description;
+    String ownerUsername;
+    String cameraParameters;
+    String location;
 }

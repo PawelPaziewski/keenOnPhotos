@@ -1,6 +1,7 @@
 package pl.paziewski.keenonphotos.photos;
 
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,8 +54,11 @@ class PhotoController {
     }
 
     @GetMapping("/details/{id}")
-    String details(@PathVariable String id) {
-        System.out.println("RECEIVED ID: " + id);
-        return "home";
+    String details(@PathVariable ObjectId id, Model model) {
+        Optional<LatestPhotoDto> photo = facade.getPhoto(id);
+        return photo.map(p -> {
+            model.addAttribute("photo", p);
+            return "details";
+        }).orElse("redirect:/home");
     }
 }

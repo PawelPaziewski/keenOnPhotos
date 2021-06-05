@@ -40,7 +40,10 @@ class PhotoHelper {
                 "data:image/png;base64," + Base64.getMimeEncoder().encodeToString(photo.getPhoto()),
                 photo.getUploaded().toString(),
                 photo.getTitle(),
-                photo.getDescription()
+                photo.getDescription(),
+                photo.getOwnerUsername(),
+                photo.getCameraParameters(),
+                photo.getLocation()
         );
     }
 }
