@@ -37,7 +37,7 @@ class PhotoHelper {
     static LatestPhotoDto convertToLatestPhotoDto(Photo photo) {
         return new LatestPhotoDto(
                 "data:image/png;base64," + Base64.getMimeEncoder().encodeToString(photo.getPhoto()),
-                photo.getUploaded().toString(),
+                photo.getUploaded().toString("dd-MM-yyyy hh:mm:ss"),
                 photo.getTitle(),
                 photo.getDescription()
         );
